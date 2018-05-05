@@ -49,7 +49,7 @@ public class Algorithms {
      * @param high
      * @return
      */
-    public static int Select(int[] array, int low, int mid, int high)
+    private static int Select(int[] array, int low, int mid, int high)
     {
     	int pos = Partition( array, low, high );
     	
@@ -74,7 +74,7 @@ public class Algorithms {
      * @return Returns the index at which the pivot element formerly at location
      * A[l] is placed
      */
-    public static int Partition(int[] array, int low, int high)
+    private static int Partition(int[] array, int low, int high)
     {
     	int pivotval = array[low];
     	int pivotloc = low;
