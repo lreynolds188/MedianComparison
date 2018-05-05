@@ -1,3 +1,5 @@
+package medianAlgorithms;
+
 public class Algorithms {
 
     /**
