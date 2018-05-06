@@ -94,7 +94,7 @@ public class Algorithms {
     	
 		int tempVal = array[low];
 		array[low] = array[pivotloc];	// swap elements around pivot
-		array[low] = tempVal;			// put pivot element in place
+		array[pivotloc] = tempVal;			// put pivot element in place
     	
         return pivotloc;
     }
