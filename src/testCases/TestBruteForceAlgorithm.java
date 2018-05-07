@@ -1,8 +1,12 @@
+package testCases;
+
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
 
-public class Tests {
+import medianAlgorithms.*;
+
+public class TestBruteForceAlgorithm {
 
     @Before@Test
     public void test(){
