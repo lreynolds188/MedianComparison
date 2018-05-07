@@ -15,7 +15,7 @@ public class PartitionAlgorithm
         if ( array.length == 1 )
         	return array[0];
         else
-        	return Select( array, 0, (int)Math.floor( array.length / 2 ), array.length - 1 );
+        	return SelectBasicOperationCount( array, 0, (int)Math.floor( array.length / 2 ), array.length - 1 );
     }
     
     
@@ -42,9 +42,34 @@ public class PartitionAlgorithm
      * @param high
      * @return
      */
-    public static int Select(int[] array, int low, int mid, int high)
+    public static int SelectBasicOperationCount(int[] array, int low, int mid, int high)
     {
     	int pos = PartitionBasicOperationsCount( array, low, high );
+    	
+    	if ( pos == mid )
+    		return array[pos];
+    	if ( pos > mid )
+    		return SelectBasicOperationCount( array, low, mid, pos - 1 );
+    	if ( pos < mid )
+    		return SelectBasicOperationCount( array, pos + 1, mid, high );
+    	
+        return 0;
+    }
+    
+    
+    
+    /**
+     * Returns the value at index m in array slice A[l...h], if the slice
+     * where sorted into nondecreasing order
+     * @param array
+     * @param low
+     * @param mid
+     * @param high
+     * @return
+     */
+    public static int Select(int[] array, int low, int mid, int high)
+    {
+    	int pos = Partition( array, low, high );
     	
     	if ( pos == mid )
     		return array[pos];
@@ -55,6 +80,7 @@ public class PartitionAlgorithm
     	
         return 0;
     }
+    
 
     /**
      * Partitions array slice A[l...h] by moving element A[l] to the position
