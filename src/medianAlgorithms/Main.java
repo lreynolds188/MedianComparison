@@ -24,9 +24,9 @@ public class Main{
 
     public static void main(String[] args) throws IOException
     {
-    	int numTests = 300;
+    	int numTests = 350;
     	int size = 1000;
-    	int numArraysTested = 50;
+    	int numArraysTested = 100;
     	
     	int[] sizeOfArray = new int[numArraysTested];
     	long[] basicOperationCounter = new long[numArraysTested];
@@ -39,6 +39,9 @@ public class Main{
     	
     	for ( int i = 0; i < numTests; i++ )
     	{
+    		
+    		size = 1000;
+    		
     		System.out.println( "Starting test " + (i + 1) + "\n\n\n");
     		for ( int j = 0; j < numArraysTested; j++ )
     		{
@@ -59,7 +62,7 @@ public class Main{
     			System.out.println( "Basic operations performed: " + PartitionAlgorithm.basicCounter + "\n");
     			
     			// incrament size of array
-    			size += 10000;
+    			size += 5000;
     		}
     	}
     	
