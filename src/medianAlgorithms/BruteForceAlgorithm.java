@@ -9,7 +9,7 @@ package medianAlgorithms;
  */
 public class BruteForceAlgorithm {
 
-    static long operCounter = 0;
+    public static long operCounter = 0;
 
     /**
      * Returns the median value in a given array A of n numbers.
@@ -20,10 +20,10 @@ public class BruteForceAlgorithm {
         if (array.length != 0){
             int k = (int)Math.ceil((array.length+1)/2);
             for (int i = 0; i < array.length; i++){
-                operCounter++;
                 int smaller = 0;
                 int equal = 0;
                 for (int j = 0; j < array.length; j++){
+                    operCounter++;
                     if (array[j] < array[i]){
                         smaller += 1;
                     } else if (array[j] == array[i]){

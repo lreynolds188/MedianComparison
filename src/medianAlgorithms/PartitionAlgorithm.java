@@ -2,7 +2,7 @@ package medianAlgorithms;
 
 public class PartitionAlgorithm 
 {
-	static long basicCounter = 0;
+	public static long basicCounter = 0;
 	
 	/**
      * Returns the median value given to the array, if an event number

@@ -16,75 +16,69 @@ public class Main{
 
     public static void main(String[] args) throws Exception
     {
-    	partitionTests();
+    	//partitionTests();
     	bruteForceTests();
-        PlotGraph("Execution Time", "Brute Force vs Partition (Execution Time)", "Dataset Size", "Execution Time (ms)", execTimeDataSet);
-        PlotGraph("Basic Operations", "Brute Force vs Partition (Basic Operations)", "Dataset Size", "Number of Basic Operations", operationsDataSet);
+        plotGraph("Execution Time", "Brute Force vs Partition (Execution Time)", "Dataset Size", "Execution Time (ms)", execTimeDataSet);
+        plotGraph("Basic Operations", "Brute Force vs Partition (Basic Operations)", "Dataset Size", "Number of Basic Operations", operationsDataSet);
     }
 
     public static void partitionTests() throws IOException {
-        int numTests = 350;
-        int size = 1000;
+        int numTests = 10;
         int numArraysTested = 100;
+        long startTime;
 
         int[] sizeOfArray = new int[numArraysTested];
         long[] basicOperationCounter = new long[numArraysTested];
-
+        long[] executionTimeCounter = new long[numArraysTested];
 
         FileWriter fl = new FileWriter( "basicOperationsTest.csv" );
+        fl.write("Array Size, Basic Operations, Execution Time(ms)\n");
 
-        for ( int j = 0; j < numArraysTested; j++ )
-            basicOperationCounter[j] = 0;
-
-        for ( int i = 0; i < numTests; i++ )
-        {
-
-            size = 1000;
-
-            System.out.println( "Starting test " + (i + 1) + "\n\n\n");
-            for ( int j = 0; j < numArraysTested; j++ )
+        for (int size = 1000; size < 502000; size+= 5000){
+            for ( int i = 0; i < numTests; i++ )
             {
-                System.out.println( "starting array size test " + (j + 1) );
+                System.out.println( "starting array size " + size + " \ttest " + (i + 1) );
 
                 int[] randArray = generateRandomArray( size );
 
                 PartitionAlgorithm.basicCounter = 0;
 
+                startTime = System.currentTimeMillis();
                 PartitionAlgorithm.MedianBasicOperationCount( randArray );
-
+                executionTimeCounter[i] = System.currentTimeMillis() - startTime;
 
                 // save data
-                sizeOfArray[j] = size;
-                basicOperationCounter[j] += PartitionAlgorithm.basicCounter;
+                sizeOfArray[i] = size;
+                basicOperationCounter[i] += PartitionAlgorithm.basicCounter;
 
-                System.out.println( "Basic operations performed: " + PartitionAlgorithm.basicCounter + "\n");
+                System.out.println( "Basic operations performed: " + PartitionAlgorithm.basicCounter + "\tExecution time: " + executionTimeCounter[i] + "ms\n");
+            }
 
-                // increment size of array
-                size += 5000;
+            // calculate average
+            for ( int j = 0; j < numTests; j++ )
+            {
+                basicOperationCounter[j] /= numTests;
+                executionTimeCounter[j] /= numTests;
+
+                execTimeDataSet.addValue(executionTimeCounter[j], "Partition", Integer.toString(size));
+                operationsDataSet.addValue(basicOperationCounter[j], "Partition", Integer.toString(size));
+
+                // save data in csv format
+                fl.write( sizeOfArray[j] + "," );
+                fl.write( basicOperationCounter[j] + ",");
+                fl.write(executionTimeCounter[j] + "\n");
             }
         }
-
-        // calculate average
-        for ( int j = 0; j < numArraysTested; j++ )
-        {
-            basicOperationCounter[j] /= numTests;
-
-//            execTimeDataSet.addValue(, "Partition", Integer.toString(arraySize));
-            operationsDataSet.addValue(basicOperationCounter[j], "Partition", Integer.toString(sizeOfArray[j]));
-
-            // save data in csv format
-            fl.write( sizeOfArray[j] + "," );
-            fl.write( basicOperationCounter[j] + "\n");
-        }
-
-
-
 
         fl.close();
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     public static void bruteForceTests() throws Exception {
-		int testsPerSize = 20;
+		int testsPerSize = 10;
         long startTime;
         long avgOperations;
         long avgExecTime;
@@ -93,7 +87,7 @@ public class Main{
 
         HashMap<Integer, Long[]> data = new HashMap<>();
 
-        for (int arraySize = 1000; arraySize <= 500000; arraySize += 5000){
+        for (int arraySize = 1000; arraySize < 502000; arraySize += 5000){
             basicOperationCounter = new long[testsPerSize];
             execTimeCounter = new long[testsPerSize];
             for ( int i = 0; i < testsPerSize; i++ ) {
@@ -106,18 +100,24 @@ public class Main{
                 execTimeCounter[i] = System.currentTimeMillis() - startTime;
                 basicOperationCounter[i] = BruteForceAlgorithm.operCounter;
 
-                System.out.println("Basic operations: " + basicOperationCounter[i] + "\t" + "Execution time: " + execTimeCounter[i]);
+                System.out.println("Basic operations: " + basicOperationCounter[i] + "\t\t" + "Execution time: " + execTimeCounter[i] + "ms");
+                data.put(arraySize, new Long[]{basicOperationCounter[i], execTimeCounter[i]});
             }
             avgOperations = calculateAverage(basicOperationCounter);
             avgExecTime = calculateAverage(execTimeCounter);
             execTimeDataSet.addValue(avgExecTime, "Brute Force", Integer.toString(arraySize));
             operationsDataSet.addValue( avgOperations, "Brute Force", Integer.toString(arraySize));
-            data.put(arraySize, new Long[]{avgOperations, avgExecTime});
-            System.out.println("Average basic operations: " + avgOperations + "\t" + "Average execution time: " + avgExecTime + "ms\n");
+
+            System.out.println("Average basic operations: " + avgOperations + "\t\t" + "Average execution time: " + avgExecTime + "ms\n");
         }
 		saveData(data, "bruteForceData.csv");
 	}
 
+    /**
+     *
+     * @param size
+     * @return
+     */
     public static int[] generateRandomArray( int size )
     {
         Random randomNumberGenerator = new Random();
@@ -132,6 +132,11 @@ public class Main{
         return randArray;
     }
 
+    /**
+     *
+     * @param data
+     * @return
+     */
 	public static long calculateAverage(long[] data){
 		// calculate average
         long temp = 0;
@@ -151,7 +156,7 @@ public class Main{
      * @param yAxisLabel
      * @param dataSet
      */
-    public static void PlotGraph(String appTitle, String title, String xAxisLabel, String yAxisLabel, DefaultCategoryDataset dataSet){
+    public static void plotGraph(String appTitle, String title, String xAxisLabel, String yAxisLabel, DefaultCategoryDataset dataSet){
         Plot chart = new Plot(appTitle, title, xAxisLabel, yAxisLabel, dataSet);
         chart.pack( );
         RefineryUtilities.centerFrameOnScreen( chart );
