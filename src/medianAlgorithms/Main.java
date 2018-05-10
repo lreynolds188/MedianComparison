@@ -16,7 +16,7 @@ public class Main{
 
     public static void main(String[] args) throws Exception
     {
-    	//partitionTests();
+    	partitionTests();
     	bruteForceTests();
         plotGraph("Execution Time", "Brute Force vs Partition (Execution Time)", "Dataset Size", "Execution Time (ms)", execTimeDataSet);
         plotGraph("Basic Operations", "Brute Force vs Partition (Basic Operations)", "Dataset Size", "Number of Basic Operations", operationsDataSet);
