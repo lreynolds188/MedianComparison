@@ -22,19 +22,26 @@ public class Main{
         plotGraph("Basic Operations", "Brute Force vs Partition (Basic Operations)", "Dataset Size", "Number of Basic Operations", operationsDataSet);
     }
 
+    /**
+     * Tests run on partition median algorithm to produce experimental results for analysis
+     * @throws Exception
+     */
     public static void partitionTests() throws IOException {
         int numTests = 10;
         int numArraysTested = 100;
         long startTime;
 
-        int[] sizeOfArray = new int[numArraysTested];
-        long[] basicOperationCounter = new long[numArraysTested];
-        long[] executionTimeCounter = new long[numArraysTested];
+        int[] sizeOfArray;
+        long[] basicOperationCounter;
+        long[] executionTimeCounter;
 
         FileWriter fl = new FileWriter( "basicOperationsTest.csv" );
         fl.write("Array Size, Basic Operations, Execution Time(ms)\n");
 
         for (int size = 1000; size < 502000; size+= 5000){
+            sizeOfArray = new int[numArraysTested];
+            basicOperationCounter = new long[numArraysTested];
+            executionTimeCounter = new long[numArraysTested];
             for ( int i = 0; i < numTests; i++ )
             {
                 System.out.println( "starting array size " + size + " \ttest " + (i + 1) );
@@ -49,9 +56,14 @@ public class Main{
 
                 // save data
                 sizeOfArray[i] = size;
-                basicOperationCounter[i] += PartitionAlgorithm.basicCounter;
+                basicOperationCounter[i] = PartitionAlgorithm.basicCounter;
 
                 System.out.println( "Basic operations performed: " + PartitionAlgorithm.basicCounter + "\tExecution time: " + executionTimeCounter[i] + "ms\n");
+
+                // save data in csv format
+                fl.write( sizeOfArray[i] + "," );
+                fl.write( basicOperationCounter[i] + ",");
+                fl.write(executionTimeCounter[i] + "\n");
             }
 
             // calculate average
@@ -62,11 +74,6 @@ public class Main{
 
                 execTimeDataSet.addValue(executionTimeCounter[j], "Partition", Integer.toString(size));
                 operationsDataSet.addValue(basicOperationCounter[j], "Partition", Integer.toString(size));
-
-                // save data in csv format
-                fl.write( sizeOfArray[j] + "," );
-                fl.write( basicOperationCounter[j] + ",");
-                fl.write(executionTimeCounter[j] + "\n");
             }
         }
 
@@ -74,7 +81,7 @@ public class Main{
     }
 
     /**
-     *
+     * Tests run on the brute force median algorithm to produce experimental results for analysis
      * @throws Exception
      */
     public static void bruteForceTests() throws Exception {
@@ -108,13 +115,13 @@ public class Main{
             execTimeDataSet.addValue(avgExecTime, "Brute Force", Integer.toString(arraySize));
             operationsDataSet.addValue( avgOperations, "Brute Force", Integer.toString(arraySize));
 
-            System.out.println("Average basic operations: " + avgOperations + "\t\t" + "Average execution time: " + avgExecTime + "ms\n");
+            System.out.println("Average basic operations: " + avgOperations + "\t" + "Average execution time: " + avgExecTime + "ms\n");
         }
 		saveData(data, "bruteForceData.csv");
 	}
 
     /**
-     *
+     * Uses the random number generator to generate an array of int [size] with random numbers in each index
      * @param size
      * @return
      */
@@ -133,7 +140,7 @@ public class Main{
     }
 
     /**
-     *
+     * Calculates the average of an array of long's
      * @param data
      * @return
      */
@@ -148,8 +155,7 @@ public class Main{
 	}
 
     /**
-     * Creates a new plot class and sends it the required variables to plot the graph.
-     *
+     * Creates a new plot class and sends it the required variables to plot the graph
      * @param appTitle
      * @param title
      * @param xAxisLabel
@@ -164,7 +170,7 @@ public class Main{
     }
 
     /**
-     *
+     * Saves all data stored in a HashMap<Integer, Long[]> to the specified filename in a csv format
      * @param data
      * @param filename
      * @throws IOException

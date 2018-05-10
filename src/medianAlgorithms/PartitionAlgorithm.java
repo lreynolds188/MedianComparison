@@ -1,9 +1,8 @@
 package medianAlgorithms;
 
-public class PartitionAlgorithm 
-{
+public class PartitionAlgorithm {
 	public static long basicCounter = 0;
-	
+
 	/**
      * Returns the median value given to the array, if an event number
      * exists it returns the element to the right of the middle
@@ -17,8 +16,7 @@ public class PartitionAlgorithm
         else
         	return SelectBasicOperationCount( array, 0, (int)Math.floor( array.length / 2 ), array.length - 1 );
     }
-    
-    
+
 	/**
      * Returns the median value given to the array, if an event number
      * exists it returns the element to the right of the middle
@@ -56,8 +54,6 @@ public class PartitionAlgorithm
         return 0;
     }
     
-    
-    
     /**
      * Returns the value at index m in array slice A[l...h], if the slice
      * where sorted into nondecreasing order
@@ -80,7 +76,6 @@ public class PartitionAlgorithm
     	
         return 0;
     }
-    
 
     /**
      * Partitions array slice A[l...h] by moving element A[l] to the position
