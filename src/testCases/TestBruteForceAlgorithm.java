@@ -39,7 +39,7 @@ public class TestBruteForceAlgorithm {
     @Test
     public void testOperationCount() throws Exception{
         BruteForceAlgorithm.operCounter = 0;
-        BruteForceAlgorithm.BruteForceMedian(new int[]{1, 2, 3, 4, 5});
+        BruteForceAlgorithm.BruteForceMedianBasicCounter(new int[]{1, 2, 3, 4, 5});
         assertEquals(15, BruteForceAlgorithm.operCounter);
     }
 
@@ -50,7 +50,7 @@ public class TestBruteForceAlgorithm {
         long[] basicOperationCounter = new long[arrays.length];
         int index = 0;
         for (int [] arr : arrays){
-            BruteForceAlgorithm.BruteForceMedian(arr);
+            BruteForceAlgorithm.BruteForceMedianBasicCounter(arr);
             basicOperationCounter[index] = BruteForceAlgorithm.operCounter;
             index++;
         }
