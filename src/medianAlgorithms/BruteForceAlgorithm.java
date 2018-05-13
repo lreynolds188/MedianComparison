@@ -19,42 +19,32 @@ public class BruteForceAlgorithm {
      */
     public static int BruteForceMedianBasicCounter(int[] array) throws Exception
     {
-        if (array.length != 0)
-        {
-        
-        	int k = (int)Math.ceil((array.length+1)/2);
+       	int k = (int)Math.ceil((array.length+1)/2);
             
-        	for (int i = 0; i < array.length; i++)
-        	{
-                int smaller = 0;
-                int equal = 0;
+       	for (int i = 0; i < array.length; i++)
+       	{
+       		int smaller = 0;
+            int equal = 0;
             
-                for (int j = 0; j < array.length; j++)
-                {
-                    operCounter++;
+            for (int j = 0; j < array.length; j++)
+            {
+                operCounter++;
                 
-                    if (array[j] < array[i])
-                    {
-                        smaller += 1;
-                    }
-                    else if (array[j] == array[i])
-                    {
-                        equal += 1;
-                    }
-                }
-                if (smaller < k && k <= (smaller + equal))
+                if (array[j] < array[i])
                 {
-                    return array[i];
+                    smaller += 1;
+                }
+                else if (array[j] == array[i])
+                {
+                    equal += 1;
                 }
             }
-            return k;
-            
-        } 
-        else 
-        {
-            throw new Exception();
-        }
-
+            if (smaller < k && k <= (smaller + equal))
+            {
+                return array[i];
+            }
+       	}
+        return k;
     }
     
     /**
@@ -64,38 +54,30 @@ public class BruteForceAlgorithm {
      */
     public static int BruteForceMedian(int[] array) throws Exception
     {
-        if (array.length != 0)
-        {
-            int k = (int)Math.ceil((array.length+1)/2);
+        int k = (int)Math.ceil((array.length+1)/2);
         
-            for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++){
             
-            	int smaller = 0;
-                int equal = 0;
+        	int smaller = 0;
+            int equal = 0;
                 
-                for (int j = 0; j < array.length; j++)
+            for (int j = 0; j < array.length; j++)
+            {
+                if (array[j] < array[i])
                 {
-                    if (array[j] < array[i])
-                    {
-                        smaller += 1;
-                    }
-                    else if (array[j] == array[i])
-                    {
-                        equal += 1;
-                    }
+                    smaller += 1;
                 }
-                if (smaller < k && k <= (smaller + equal))
+                else if (array[j] == array[i])
                 {
-                    return array[i];
+                    equal += 1;
                 }
             }
-            return k;
-        } 
-        else 
-        {
-            throw new Exception();
+            if (smaller < k && k <= (smaller + equal))
+            {
+                return array[i];
+            }
         }
-
+        return k;
     }
 }
 

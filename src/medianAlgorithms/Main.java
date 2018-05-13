@@ -16,9 +16,9 @@ public class Main{
 
     public static void main(String[] args) throws Exception
     {
-    	partitionBasicCounterTest();
-    	partitionExecutionTimeTest();
-    	bruteForceBasicOperationCounterTests();
+    	//partitionBasicCounterTest();
+    	//partitionExecutionTimeTest();
+    	//bruteForceBasicOperationCounterTests();
     	bruteForceTimeExecutionTests();
         // plotGraph("Execution Time", "Brute Force vs Partition (Execution Time)", "Dataset Size", "Execution Time (ms)", execTimeDataSet);
         //plotGraph("Basic Operations", "Brute Force vs Partition (Basic Operations)", "Dataset Size", "Number of Basic Operations", operationsDataSet);
@@ -197,7 +197,7 @@ public class Main{
      */
     public static void bruteForceTimeExecutionTests() throws Exception 
     {
-    	int numTests = 100;
+    	int numTests = 10;
         int numArraysTested = 100;
         
         int increamentSize = 1000;
