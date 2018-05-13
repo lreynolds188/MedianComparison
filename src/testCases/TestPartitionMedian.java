@@ -9,7 +9,7 @@ import medianAlgorithms.PartitionAlgorithm;
 public class TestPartitionMedian {
 
 	@Test
-	public void testSimpleCases() 
+	public void testSimpleCases() throws Exception
 	{
 		assertEquals( 5, PartitionAlgorithm.Median( new int[] { 1, 2, 3, 4, 5, 6, 7, 8 } ) );
 		assertEquals( 4, PartitionAlgorithm.Median( new int[] { 9, 1, 2, 8, 3, 4, 4, 1, 9, 2 } ) );
@@ -20,7 +20,7 @@ public class TestPartitionMedian {
 
 	
 	@Test
-	public void testEdgeCases()
+	public void testEdgeCases() throws Exception
 	{
 		assertEquals( 1, PartitionAlgorithm.Median( new int[] { 1 } ) );
 		assertEquals( 5, PartitionAlgorithm.Median( new int[] { 5 } ) );
@@ -36,7 +36,8 @@ public class TestPartitionMedian {
 	}
 
 	@Test
-	public void testOperationCount(){
+	public void testOperationCount() throws Exception
+	{
 		PartitionAlgorithm.MedianBasicOperationCount(new int[]{1, 2, 3, 4, 5});
 		assertEquals(9, PartitionAlgorithm.basicCounter);
 	}

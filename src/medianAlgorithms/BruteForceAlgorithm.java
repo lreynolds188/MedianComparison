@@ -12,30 +12,87 @@ public class BruteForceAlgorithm {
     public static long operCounter = 0;
 
     /**
-     * Returns the median value in a given array A of n numbers.
+     * Returns the median value in a given array A of n numbers. This version counts the number of 
+     * times the basic operation counter is executed
      * @param array
      * @return
      */
-    public static int BruteForceMedian(int[] array) throws Exception{
-        if (array.length != 0){
-            int k = (int)Math.ceil((array.length+1)/2);
-            for (int i = 0; i < array.length; i++){
+    public static int BruteForceMedianBasicCounter(int[] array) throws Exception
+    {
+        if (array.length != 0)
+        {
+        
+        	int k = (int)Math.ceil((array.length+1)/2);
+            
+        	for (int i = 0; i < array.length; i++)
+        	{
                 int smaller = 0;
                 int equal = 0;
-                for (int j = 0; j < array.length; j++){
+            
+                for (int j = 0; j < array.length; j++)
+                {
                     operCounter++;
-                    if (array[j] < array[i]){
+                
+                    if (array[j] < array[i])
+                    {
                         smaller += 1;
-                    } else if (array[j] == array[i]){
+                    }
+                    else if (array[j] == array[i])
+                    {
                         equal += 1;
                     }
                 }
-                if (smaller < k && k <= (smaller + equal)){
+                if (smaller < k && k <= (smaller + equal))
+                {
                     return array[i];
                 }
             }
             return k;
-        } else {
+            
+        } 
+        else 
+        {
+            throw new Exception();
+        }
+
+    }
+    
+    /**
+     * Returns the median value in a given array A of n numbers. 
+     * @param array
+     * @return
+     */
+    public static int BruteForceMedian(int[] array) throws Exception
+    {
+        if (array.length != 0)
+        {
+            int k = (int)Math.ceil((array.length+1)/2);
+        
+            for (int i = 0; i < array.length; i++){
+            
+            	int smaller = 0;
+                int equal = 0;
+                
+                for (int j = 0; j < array.length; j++)
+                {
+                    if (array[j] < array[i])
+                    {
+                        smaller += 1;
+                    }
+                    else if (array[j] == array[i])
+                    {
+                        equal += 1;
+                    }
+                }
+                if (smaller < k && k <= (smaller + equal))
+                {
+                    return array[i];
+                }
+            }
+            return k;
+        } 
+        else 
+        {
             throw new Exception();
         }
 

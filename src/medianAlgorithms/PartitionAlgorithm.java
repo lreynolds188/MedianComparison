@@ -9,7 +9,7 @@ public class PartitionAlgorithm {
      * @param array
      * @return
      */
-    public static int MedianBasicOperationCount(int[] array)
+    public static int MedianBasicOperationCount(int[] array) throws Exception
     {
         if ( array.length == 1 )
         	return array[0];
@@ -23,7 +23,7 @@ public class PartitionAlgorithm {
      * @param array
      * @return
      */
-    public static int Median(int[] array)
+    public static int Median(int[] array) throws Exception
     {
         if ( array.length == 1 )
         	return array[0];
@@ -40,7 +40,7 @@ public class PartitionAlgorithm {
      * @param high
      * @return
      */
-    public static int SelectBasicOperationCount(int[] array, int low, int mid, int high)
+    public static int SelectBasicOperationCount(int[] array, int low, int mid, int high) throws Exception
     {
     	int pos = PartitionBasicOperationsCount( array, low, high );
     	
@@ -63,7 +63,7 @@ public class PartitionAlgorithm {
      * @param high
      * @return
      */
-    public static int Select(int[] array, int low, int mid, int high)
+    public static int Select(int[] array, int low, int mid, int high) throws Exception
     {
     	int pos = Partition( array, low, high );
     	
@@ -88,7 +88,7 @@ public class PartitionAlgorithm {
      * @return Returns the index at which the pivot element formerly at location
      * A[l] is placed
      */
-    public static int PartitionBasicOperationsCount(int[] array, int low, int high)
+    public static int PartitionBasicOperationsCount(int[] array, int low, int high) throws Exception
     {
     	int pivotval = array[low];
     	int pivotloc = low;
@@ -128,7 +128,7 @@ public class PartitionAlgorithm {
      * @return Returns the index at which the pivot element formerly at location
      * A[l] is placed
      */
-    public static int Partition(int[] array, int low, int high)
+    public static int Partition(int[] array, int low, int high) throws Exception
     {
     	int pivotval = array[low];
     	int pivotloc = low;

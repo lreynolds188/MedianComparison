@@ -18,9 +18,9 @@ public class TestBruteForceAlgorithm {
     @Test
     public void testBasicCase() throws Exception{
         assertEquals(4, BruteForceAlgorithm.BruteForceMedian(new int[]{1, 3, 4, 6, 7}));
-        assertEquals(3, BruteForceAlgorithm.BruteForceMedian(new int[]{1, 3, 4, 6}));
-        assertEquals(2, BruteForceAlgorithm.BruteForceMedian(new int[]{1, 2, 3, 4, 7, 9}));
-        assertEquals(0, BruteForceAlgorithm.BruteForceMedian(new int[]{0, 0, 0, 0, 0, 0, 0}));
+        assertEquals(4, BruteForceAlgorithm.BruteForceMedian(new int[]{4, 7, 6, 1, 3}));
+        assertEquals(3, BruteForceAlgorithm.BruteForceMedian(new int[]{-1, -2, 3, 4, 7, 9}));
+        assertEquals(3, BruteForceAlgorithm.BruteForceMedian(new int[]{7, 4, 9, 3, 1, 2}));
     }
 
     @Test
