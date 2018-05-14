@@ -18,10 +18,10 @@ public class Main{
     {
     	//partitionBasicCounterTest();
     	//partitionExecutionTimeTest();
-    	//bruteForceBasicOperationCounterTests();
-    	bruteForceTimeExecutionTests();
-        // plotGraph("Execution Time", "Brute Force vs Partition (Execution Time)", "Dataset Size", "Execution Time (ms)", execTimeDataSet);
-        //plotGraph("Basic Operations", "Brute Force vs Partition (Basic Operations)", "Dataset Size", "Number of Basic Operations", operationsDataSet);
+    	bruteForceBasicOperationCounterTests();
+    	//bruteForceTimeExecutionTests();
+        //plotGraph("Execution Time", "Partition Algorithm Execution Time", "Dataset Size", "Execution Time (ns)", execTimeDataSet);
+        plotGraph("Basic Operations", "Brute Force Basic Operations", "Dataset Size", "Number of Basic Operations", operationsDataSet);
     }
 
     /**
@@ -40,7 +40,6 @@ public class Main{
         long[] basicOperationCounter = new long[numArraysTested];
 
         FileWriter fl = new FileWriter( "partitionBasicOperationsCounterTest.csv" );
-        // fl.write("Array Size, Basic Operations\n");
         
         // Initialise execution time counter
         for ( int i = 0; i < numArraysTested; i++ )
@@ -71,7 +70,7 @@ public class Main{
             
             // Write data to file
             fl.write( sizeOfArray[j] + "," );
-        	fl.write( basicOperationCounter[j] + ",");
+        	fl.write( basicOperationCounter[j] + "\n");
         	
             size += increamentSize;
         }
@@ -85,7 +84,7 @@ public class Main{
      */
     public static void partitionExecutionTimeTest() throws Exception
     {
-    	int numTests = 1500;
+    	int numTests = 10;
         int numArraysTested = 100;
         
         int increamentSize = 5000;
@@ -97,7 +96,6 @@ public class Main{
         long[] executionTimeCounter;
 
         FileWriter fl = new FileWriter( "partitionExecutionTimeTest.csv" );
-        // fl.write("Array Size, Execution Time(ms)\n");
         
         sizeOfArray = new int[numArraysTested];
         executionTimeCounter = new long[numArraysTested];
@@ -152,7 +150,6 @@ public class Main{
         long[] basicOperationCounter = new long[numArraysTested];
 
         FileWriter fl = new FileWriter( "bruteForceBasicOperationsCounterTest.csv" );
-        // fl.write("Array Size, Basic Operations\n");
         
         // Initialise execution time counter
         for ( int i = 0; i < numArraysTested; i++ )
@@ -172,9 +169,9 @@ public class Main{
 
                 // save data
                 sizeOfArray[j] = size;
-                basicOperationCounter[j] += PartitionAlgorithm.basicCounter;
+                basicOperationCounter[j] += BruteForceAlgorithm.operCounter;
 
-                System.out.println( "Basic operations performed: " + PartitionAlgorithm.basicCounter + "\n");
+                System.out.println( "Basic operations performed: " + BruteForceAlgorithm.operCounter + "\n");
             }
             
             // Calculate average
@@ -183,7 +180,7 @@ public class Main{
             
             // Write data to file
             fl.write( sizeOfArray[j] + "," );
-        	fl.write( basicOperationCounter[j] + ",");
+        	fl.write( basicOperationCounter[j] + "\n");
         	
             size += increamentSize;
         }
@@ -200,7 +197,7 @@ public class Main{
     	int numTests = 10;
         int numArraysTested = 100;
         
-        int increamentSize = 1000;
+        int increamentSize = 5000;
         int size = 1000;
         
         long startTime;
@@ -209,7 +206,6 @@ public class Main{
         long[] executionTimeCounter;
 
         FileWriter fl = new FileWriter( "bruteForceExecutionTimeTest.csv" );
-        // fl.write("Array Size, Execution Time(ms)\n");
         
         sizeOfArray = new int[numArraysTested];
         executionTimeCounter = new long[numArraysTested];

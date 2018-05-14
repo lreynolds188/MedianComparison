@@ -17,7 +17,7 @@ public class BruteForceAlgorithm {
      * @param array
      * @return
      */
-    public static int BruteForceMedianBasicCounter(int[] array) throws Exception
+    public static int BruteForceMedianBasicCounter(int[] array)
     {
        	int k = (int)Math.ceil((array.length+1)/2);
             
@@ -52,7 +52,7 @@ public class BruteForceAlgorithm {
      * @param array
      * @return
      */
-    public static int BruteForceMedian(int[] array) throws Exception
+    public static int BruteForceMedian(int[] array)
     {
         int k = (int)Math.ceil((array.length+1)/2);
         

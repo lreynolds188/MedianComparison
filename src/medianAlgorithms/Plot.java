@@ -3,6 +3,8 @@ package medianAlgorithms;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.ui.ApplicationFrame;
@@ -44,7 +46,9 @@ public class Plot extends ApplicationFrame {
         renderer.setSeriesShape(0, new Ellipse2D.Double(-3d, -3d, 6d, 6d));
 
         ChartPanel chartPanel = new ChartPanel( lineChart );
-        chartPanel.setPreferredSize( new java.awt.Dimension( 1280 , 800 ) );
+        chartPanel.setPreferredSize( new java.awt.Dimension( 1280 , 720 ) );
         setContentPane( chartPanel );
+        CategoryAxis axis = plot.getDomainAxis();
+        axis.setCategoryLabelPositions(CategoryLabelPositions.createDownRotationLabelPositions(Math.PI/2.0));
     }
 }

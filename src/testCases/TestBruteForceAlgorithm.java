@@ -16,7 +16,7 @@ import medianAlgorithms.*;
 public class TestBruteForceAlgorithm {
 
     @Test
-    public void testBasicCase() throws Exception{
+    public void testBasicCase(){
         assertEquals(4, BruteForceAlgorithm.BruteForceMedian(new int[]{1, 3, 4, 6, 7}));
         assertEquals(4, BruteForceAlgorithm.BruteForceMedian(new int[]{4, 7, 6, 1, 3}));
         assertEquals(3, BruteForceAlgorithm.BruteForceMedian(new int[]{-1, -2, 3, 4, 7, 9}));
@@ -24,7 +24,7 @@ public class TestBruteForceAlgorithm {
     }
 
     @Test
-    public void testEdgeCases() throws Exception{
+    public void testEdgeCases(){
         assertEquals(1, BruteForceAlgorithm.BruteForceMedian(new int[]{1}));
         assertEquals(8, BruteForceAlgorithm.BruteForceMedian(new int[]{8}));
         assertEquals(1, BruteForceAlgorithm.BruteForceMedian(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
@@ -32,19 +32,19 @@ public class TestBruteForceAlgorithm {
     }
 
     @Test (expected = Exception.class)
-    public void testEmptyCase() throws Exception{
+    public void testEmptyCase(){
         BruteForceAlgorithm.BruteForceMedian(new int[]{});
     }
 
     @Test
-    public void testOperationCount() throws Exception{
+    public void testOperationCount(){
         BruteForceAlgorithm.operCounter = 0;
         BruteForceAlgorithm.BruteForceMedianBasicCounter(new int[]{1, 2, 3, 4, 5});
         assertEquals(15, BruteForceAlgorithm.operCounter);
     }
 
     @Test
-    public void testAverageCount() throws Exception{
+    public void testAverageCount(){
         BruteForceAlgorithm.operCounter = 0;
         int[][] arrays = new int[][]{new int[]{1, 3, 4, 6, 7}, new int[]{1, 3, 4, 6}, new int[]{1, 3, 4, 4, 7, 9}, new int[]{0, 0, 0, 0, 0, 0, 0}};
         long[] basicOperationCounter = new long[arrays.length];
