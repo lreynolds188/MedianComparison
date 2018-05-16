@@ -16,10 +16,10 @@ public class Main{
 
     public static void main(String[] args) throws Exception
     {
-    	//partitionBasicCounterTest();
-    	//partitionExecutionTimeTest();
+    	partitionBasicCounterTest();
+    	partitionExecutionTimeTest();
     	bruteForceBasicOperationCounterTests();
-    	//bruteForceTimeExecutionTests();
+    	bruteForceTimeExecutionTests();
         //plotGraph("Execution Time", "Partition Algorithm Execution Time", "Dataset Size", "Execution Time (ns)", execTimeDataSet);
         plotGraph("Basic Operations", "Brute Force Basic Operations", "Dataset Size", "Number of Basic Operations", operationsDataSet);
     }
@@ -30,10 +30,10 @@ public class Main{
      */
     public static void partitionBasicCounterTest() throws Exception 
     {
-        int numTests = 10;
+        int numTests = 40;
         int numArraysTested = 100;
         
-        int increamentSize = 5000;
+        int increamentSize = 1000;
         int size = 1000;
 
         int[] sizeOfArray = new int[numArraysTested];
@@ -84,10 +84,10 @@ public class Main{
      */
     public static void partitionExecutionTimeTest() throws Exception
     {
-    	int numTests = 10;
+    	int numTests = 40;
         int numArraysTested = 100;
         
-        int increamentSize = 5000;
+        int increamentSize = 1000;
         int size = 1000;
         
         long startTime;
@@ -140,10 +140,10 @@ public class Main{
     
     public static void bruteForceBasicOperationCounterTests() throws Exception 
     {
-    	int numTests = 10;
+    	int numTests = 40;
         int numArraysTested = 100;
         
-        int increamentSize = 5000;
+        int increamentSize = 1000;
         int size = 1000;
 
         int[] sizeOfArray = new int[numArraysTested];
@@ -194,10 +194,10 @@ public class Main{
      */
     public static void bruteForceTimeExecutionTests() throws Exception 
     {
-    	int numTests = 10;
+    	int numTests = 40;
         int numArraysTested = 100;
         
-        int increamentSize = 5000;
+        int increamentSize = 1000;
         int size = 1000;
         
         long startTime;
@@ -265,21 +265,6 @@ public class Main{
 
         return randArray;
     }
-
-    /**
-     * Calculates the average of an array of long's
-     * @param data
-     * @return
-     */
-	public static long calculateAverage(long[] data){
-		// calculate average
-        long temp = 0;
-		for ( int i = 0; i < data.length; i++ )
-		{
-			temp += data[i];
-		}
-		return temp /= data.length;
-	}
 
     /**
      * Creates a new plot class and sends it the required variables to plot the graph
