@@ -21,7 +21,7 @@ public class Main{
     	bruteForceBasicOperationCounterTests();
     	bruteForceTimeExecutionTests();
         //plotGraph("Execution Time", "Partition Algorithm Execution Time", "Dataset Size", "Execution Time (ns)", execTimeDataSet);
-        plotGraph("Basic Operations", "Brute Force Basic Operations", "Dataset Size", "Number of Basic Operations", operationsDataSet);
+        //plotGraph("Basic Operations", "Brute Force Basic Operations", "Dataset Size", "Number of Basic Operations", operationsDataSet);
     }
 
     /**
@@ -265,6 +265,22 @@ public class Main{
 
         return randArray;
     }
+    
+
+    /**
+     * Calculates the average of an array of long's
+     * @param data
+     * @return
+     */
+	public static long calculateAverage(long[] data){
+		// calculate average
+        long temp = 0;
+		for ( int i = 0; i < data.length; i++ )
+		{
+			temp += data[i];
+		}
+		return temp /= data.length;
+	}
 
     /**
      * Creates a new plot class and sends it the required variables to plot the graph
