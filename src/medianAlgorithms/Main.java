@@ -1,18 +1,11 @@
 package medianAlgorithms;
 
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.RefineryUtilities;
-
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class Main{
 
-    static DefaultCategoryDataset execTimeDataSet = new DefaultCategoryDataset( );
-    static DefaultCategoryDataset operationsDataSet = new DefaultCategoryDataset( );
 
     public static void main(String[] args) throws Exception
     {
@@ -20,8 +13,6 @@ public class Main{
     	partitionExecutionTimeTest();
     	bruteForceBasicOperationCounterTests();
     	bruteForceTimeExecutionTests();
-        //plotGraph("Execution Time", "Partition Algorithm Execution Time", "Dataset Size", "Execution Time (ns)", execTimeDataSet);
-        //plotGraph("Basic Operations", "Brute Force Basic Operations", "Dataset Size", "Number of Basic Operations", operationsDataSet);
     }
 
     /**
@@ -66,7 +57,6 @@ public class Main{
             
             // Calculate average
             basicOperationCounter[j] /= numTests;
-            operationsDataSet.addValue(basicOperationCounter[j], "Partition", Integer.toString(sizeOfArray[j]));
             
             // Write data to file
             fl.write( sizeOfArray[j] + "," );
@@ -125,7 +115,6 @@ public class Main{
             
             // calculate Average
             executionTimeCounter[j] /= numTests;
-            execTimeDataSet.addValue(executionTimeCounter[j], "Partition", Integer.toString( sizeOfArray[j] ) );
             
             // Write to CSV
         	fl.write( sizeOfArray[j] + "," );
@@ -176,7 +165,6 @@ public class Main{
             
             // Calculate average
             basicOperationCounter[j] /= numTests;
-            operationsDataSet.addValue(basicOperationCounter[j], "Partition", Integer.toString(sizeOfArray[j]));
             
             // Write data to file
             fl.write( sizeOfArray[j] + "," );
@@ -235,7 +223,6 @@ public class Main{
             
             // calculate Average
             executionTimeCounter[j] /= numTests;
-            execTimeDataSet.addValue(executionTimeCounter[j], "Brute Force", Integer.toString( sizeOfArray[j] ) );
             
             // Write to CSV
         	fl.write( sizeOfArray[j] + "," );
@@ -280,39 +267,6 @@ public class Main{
 			temp += data[i];
 		}
 		return temp /= data.length;
-	}
-
-    /**
-     * Creates a new plot class and sends it the required variables to plot the graph
-     * @param appTitle
-     * @param title
-     * @param xAxisLabel
-     * @param yAxisLabel
-     * @param dataSet
-     */
-    public static void plotGraph(String appTitle, String title, String xAxisLabel, String yAxisLabel, DefaultCategoryDataset dataSet){
-        Plot chart = new Plot(appTitle, title, xAxisLabel, yAxisLabel, dataSet);
-        chart.pack( );
-        RefineryUtilities.centerFrameOnScreen( chart );
-        chart.setVisible( true );
-    }
-
-    /**
-     * Saves all data stored in a HashMap<Integer, Long[]> to the specified filename in a csv format
-     * @param data
-     * @param filename
-     * @throws IOException
-     */
-	public static void saveData(HashMap<Integer, Long[]> data, String filename) throws IOException {
-		FileWriter fl = new FileWriter( filename );
-
-        fl.write("Array Size, Basic Operations, Execution Time(ms)\n");
-		for (Map.Entry<Integer, Long[]> temp : data.entrySet()){
-			// save data in csv format
-			fl.write(temp.getKey() + "," + temp.getValue()[0] + "," + temp.getValue()[1] + "\n");
-		}
-
-		fl.close();
 	}
 
 }
