@@ -1,0 +1,26 @@
+clc;
+close all;
+clear all;
+
+M = csvread("partitionBasicOperationsCounterTest.csv");
+X = csvread( "bruteForceBasicOperationsCounterTest.csv");
+
+n = M(:,1);
+basicOp = M(:, 2);
+basicOp2 = X(:, 2);
+
+calcOp = ( 1 / (1 - 2) ) * ( (1 - 2 * n) / (1 - 1/2) - ( log(n) / log(1/2) - 1 ) );
+% calcOp = 0.5 * ( n.^2 + n );
+% calcOp = n;
+
+figure();
+yyaxis left
+plot( n, basicOp, "b-o");
+xlabel( "Input data size" );
+ylabel( "Number of Partitioning Median Basic Operations Executed" )
+title( "Basic operations experimental and Theoretical results" + newline + "for Partition and Brute  Median Algorithm" );
+hold on
+yyaxis right
+plot( n, basicOp2, 'r-o')
+ylabel( "Number of Brute Force Median Basic Operations Executed")
+legend( "Partition Median", "Brute Force Median" )

@@ -2,20 +2,26 @@ clc;
 close all;
 clear all;
 
-M = csvread("bruteForceBasicOperationsCounterTest.csv");
+M = csvread("partitionExecutionTimeTest.csv");
+X = csvread( "bruteForceExecutionTimeTest.csv");
 
-[rows, columns] = size( M );
+n = M(:,1);
+basicOp = M(:, 2);
+basicOp2 = X(:, 2);
 
-X = M( 2:rows, : ); 
-
-n = X(:,1);
-basicOp = X(:, 2);
-
-% calcOp = ( 1 / (1 - 4/3) ) * ( (1 - 4/3 * n) / (1 - 3/4) - ( log(n) / log(3/4) - 1 ) );
-calcOp = 0.5 * ( n.^2 + n );
+calcOp = ( 1 / (1 - 2) ) * ( (1 - 2 * n) / (1 - 1/2) - ( log(n) / log(1/2) - 1 ) );
+% calcOp = 0.5 * ( n.^2 + n );
 % calcOp = n;
 
 figure();
-plot( n, basicOp);
+yyaxis left
+plot( n, basicOp, "b-o");
+xlabel( "Input data size" );
+ylabel( "Partition Execution Time (ns)" )
+title( "Paritioning vs Brute Force Median" + newline + "Execution Time Results" );
 hold on
-plot( n, calcOp, 'r')
+yyaxis right
+plot( n, basicOp2, 'r-o')
+ylabel( "Brute Force Time Execution (n)")
+% ylabel( "Number of Brute Force Median Basic Operations Executed")
+legend( "Paritioning Median Algorithm", "Brute Force Median Algorithm" )
