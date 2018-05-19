@@ -31,9 +31,9 @@ public class TestBruteForceAlgorithm {
         assertEquals(4, BruteForceAlgorithm.BruteForceMedian(new int[]{1, 1, 1, 1, 8, 8, 8, 8, 4}));
     }
 
-    @Test (expected = Exception.class)
+    @Test
     public void testEmptyCase(){
-        BruteForceAlgorithm.BruteForceMedian(new int[]{});
+        assertEquals(0, BruteForceAlgorithm.BruteForceMedian(new int[]{}));
     }
 
     @Test
@@ -42,21 +42,4 @@ public class TestBruteForceAlgorithm {
         BruteForceAlgorithm.BruteForceMedianBasicCounter(new int[]{1, 2, 3, 4, 5});
         assertEquals(15, BruteForceAlgorithm.operCounter);
     }
-
-    @Test
-    public void testAverageCount(){
-        BruteForceAlgorithm.operCounter = 0;
-        int[][] arrays = new int[][]{new int[]{1, 3, 4, 6, 7}, new int[]{1, 3, 4, 6}, new int[]{1, 3, 4, 4, 7, 9}, new int[]{0, 0, 0, 0, 0, 0, 0}};
-        long[] basicOperationCounter = new long[arrays.length];
-        int index = 0;
-        for (int [] arr : arrays){
-            BruteForceAlgorithm.BruteForceMedianBasicCounter(arr);
-            basicOperationCounter[index] = BruteForceAlgorithm.operCounter;
-            index++;
-        }
-        assertEquals(31, Main.calculateAverage(basicOperationCounter));
-    }
-
-
-
 }

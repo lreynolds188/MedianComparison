@@ -252,21 +252,4 @@ public class Main{
 
         return randArray;
     }
-    
-
-    /**
-     * Calculates the average of an array of long's
-     * @param data
-     * @return
-     */
-	public static long calculateAverage(long[] data){
-		// calculate average
-        long temp = 0;
-		for ( int i = 0; i < data.length; i++ )
-		{
-			temp += data[i];
-		}
-		return temp /= data.length;
-	}
-
 }
